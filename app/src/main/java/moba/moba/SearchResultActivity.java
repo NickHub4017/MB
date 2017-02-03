@@ -129,8 +129,6 @@ public class SearchResultActivity extends AppCompatActivity implements TextToSpe
             Toast.makeText(getApplicationContext(),"Initilization Failed!",Toast.LENGTH_LONG).show();
             Log.e("TTS", "Initilization Failed!");
         }
-
-
     }
 
     public void AnounceResult(){
