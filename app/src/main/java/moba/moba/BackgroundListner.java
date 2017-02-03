@@ -20,6 +20,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import java.lang.ref.WeakReference;
+import java.util.ArrayList;
 
 /**
  * Created by nrv on 2/3/17.
@@ -93,7 +94,7 @@ public class BackgroundListner extends Service {
     }
 
     // Count down timer for Jelly Bean work around
-    protected CountDownTimer mNoSpeechCountDown = new CountDownTimer(5000, 5000)
+    protected CountDownTimer mNoSpeechCountDown = new CountDownTimer(50000, 5000)
     {
 
         @Override
@@ -147,8 +148,8 @@ public class BackgroundListner extends Service {
             // speech input will be processed, so there is no need for count down anymore
             if (mIsCountDownOn)
             {
-                mIsCountDownOn = false;
-                mNoSpeechCountDown.cancel();
+              //  mIsCountDownOn = false;
+               // mNoSpeechCountDown.cancel();
             }
             //Log.d(TAG, "onBeginingOfSpeech"); //$NON-NLS-1$
         }
@@ -214,7 +215,121 @@ public class BackgroundListner extends Service {
         public void onResults(Bundle results)
         {
             //Log.d(TAG, "onResults"); //$NON-NLS-1$
-            Toast.makeText(getApplicationContext(),"Resultsssss",Toast.LENGTH_LONG).show();
+
+            ArrayList<String> matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
+            String text = "";
+
+            for (String result : matches) {
+                if (result.toLowerCase().equals("one")) {
+                    mIsCountDownOn = false;
+                    mNoSpeechCountDown.cancel();
+                    Intent intnet = new Intent("com.moba.moba.select");
+                    intnet.putExtra("selected",1);
+                    sendBroadcast(intnet);
+
+                    break;
+
+                } else if (result.toLowerCase().equals("two")) {
+                    mIsCountDownOn = false;
+                    mNoSpeechCountDown.cancel();
+                    Intent intnet = new Intent("com.moba.moba.select");
+                    intnet.putExtra("selected",2);
+                    sendBroadcast(intnet);
+                    break;
+                } else if (result.toLowerCase().equals("three")) {
+                    mIsCountDownOn = false;
+                    mNoSpeechCountDown.cancel();
+                    Intent intnet = new Intent("com.moba.moba.select");
+                    intnet.putExtra("selected",3);
+                    sendBroadcast(intnet);
+                    break;
+                } else if (result.toLowerCase().equals("four")) {
+                    mIsCountDownOn = false;
+                    mNoSpeechCountDown.cancel();
+                    Intent intnet = new Intent("com.moba.moba.select");
+                    intnet.putExtra("selected",4);
+                    sendBroadcast(intnet);
+                    break;
+                } else if (result.toLowerCase().equals("five")) {
+                    mIsCountDownOn = false;
+                    mNoSpeechCountDown.cancel();
+                    Intent intnet = new Intent("com.moba.moba.select");
+                    intnet.putExtra("selected",5);
+                    sendBroadcast(intnet);
+                    break;
+                } else if (result.toLowerCase().equals("six")) {
+                    mIsCountDownOn = false;
+                    mNoSpeechCountDown.cancel();
+                    Intent intnet = new Intent("com.moba.moba.select");
+                    intnet.putExtra("selected",6);
+                    sendBroadcast(intnet);
+                    break;
+                } else if (result.toLowerCase().equals("seven")) {
+                    mIsCountDownOn = false;
+                    mNoSpeechCountDown.cancel();
+                    Intent intnet = new Intent("com.moba.moba.select");
+                    intnet.putExtra("selected",7);
+                    sendBroadcast(intnet);
+                    break;
+                } else if (result.toLowerCase().equals("eight")) {
+                    mIsCountDownOn = false;
+                    mNoSpeechCountDown.cancel();
+                    Intent intnet = new Intent("com.moba.moba.select");
+                    intnet.putExtra("selected",8);
+                    sendBroadcast(intnet);
+                    break;
+                } else if (result.toLowerCase().equals("nine")) {
+                    mIsCountDownOn = false;
+                    mNoSpeechCountDown.cancel();
+                    Intent intnet = new Intent("com.moba.moba.select");
+                    intnet.putExtra("selected",9);
+                    sendBroadcast(intnet);
+                    break;
+                } else if (result.toLowerCase().equals("ten")) {
+                    mIsCountDownOn = false;
+                    mNoSpeechCountDown.cancel();
+                    Intent intnet = new Intent("com.moba.moba.select");
+                    intnet.putExtra("selected",10);
+                    sendBroadcast(intnet);
+                    break;
+                } else if (result.toLowerCase().equals("eleven")) {
+                    mIsCountDownOn = false;
+                    mNoSpeechCountDown.cancel();
+                    Intent intnet = new Intent("com.moba.moba.select");
+                    intnet.putExtra("selected",11);
+                    sendBroadcast(intnet);
+                    break;
+                } else if (result.toLowerCase().equals("twelve")) {
+                    mIsCountDownOn = false;
+                    mNoSpeechCountDown.cancel();
+                    Intent intnet = new Intent("com.moba.moba.select");
+                    intnet.putExtra("selected",12);
+                    sendBroadcast(intnet);
+                    break;
+                } else if (result.toLowerCase().equals("thirteen")) {
+                    mIsCountDownOn = false;
+                    mNoSpeechCountDown.cancel();
+                    Intent intnet = new Intent("com.moba.moba.select");
+                    intnet.putExtra("selected",13);
+                    sendBroadcast(intnet);
+                    break;
+                } else if (result.toLowerCase().equals("fourteen")) {
+                    mIsCountDownOn = false;
+                    mNoSpeechCountDown.cancel();
+                    Intent intnet = new Intent("com.moba.moba.select");
+                    intnet.putExtra("selected",14);
+                    sendBroadcast(intnet);
+                    break;
+                } else if (result.toLowerCase().equals("fifteen")) {
+                    mIsCountDownOn = false;
+                    mNoSpeechCountDown.cancel();
+                    Intent intnet = new Intent("com.moba.moba.select");
+                    intnet.putExtra("selected",15);
+                    sendBroadcast(intnet);
+                    break;
+                }
+            }
+
 
         }
 

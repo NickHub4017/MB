@@ -1,8 +1,10 @@
 package moba.moba;
 
+import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.os.Build;
 import android.os.IBinder;
@@ -26,6 +28,7 @@ public class SearchResultActivity extends AppCompatActivity implements TextToSpe
     String TAG="Search Result Activity";
     private int mBindFlag;
     private Messenger mServiceMessenger;
+    private SpeechSelectResult speechSelectResult=new SpeechSelectResult();
 
     private final ServiceConnection mServiceConnection = new ServiceConnection()
     {
@@ -81,6 +84,9 @@ public class SearchResultActivity extends AppCompatActivity implements TextToSpe
 
         ListView resultview=(ListView)findViewById(R.id.datalist);
         resultview.setAdapter(searchResultAdapter);
+
+        registerReceiver(speechSelectResult, new IntentFilter("com.moba.moba.select"));
+
         //mResultSet.setText();
     }
 
@@ -96,7 +102,7 @@ public class SearchResultActivity extends AppCompatActivity implements TextToSpe
     protected void onStop()
     {
         super.onStop();
-
+        unregisterReceiver(speechSelectResult);
         if (mServiceMessenger != null)
         {
             unbindService(mServiceConnection);
@@ -134,5 +140,19 @@ public class SearchResultActivity extends AppCompatActivity implements TextToSpe
             tts.speak(se.get(i).getDescription(), TextToSpeech.QUEUE_ADD, null);
 
         }
+    }
+
+    class SpeechSelectResult extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            int selected=intent.getIntExtra("selected",0)-1;
+            if(selected>=0 && selected<se.size()-1){
+                Toast.makeText(getApplicationContext(),"-----> <---- "+se.get(selected).getTitile(),Toast.LENGTH_LONG).show();
+            }
+
+
+        }
+
     }
 }
