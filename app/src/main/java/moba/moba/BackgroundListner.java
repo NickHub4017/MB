@@ -17,6 +17,7 @@ import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.lang.ref.WeakReference;
 
@@ -138,7 +139,7 @@ public class BackgroundListner extends Service {
     protected class SpeechRecognitionListener implements RecognitionListener
     {
 
-        private static final String TAG = "SpeechRecognitionListener";
+        private static final String TAG = "SpeechService";
 
         @Override
         public void onBeginningOfSpeech()
@@ -213,6 +214,7 @@ public class BackgroundListner extends Service {
         public void onResults(Bundle results)
         {
             //Log.d(TAG, "onResults"); //$NON-NLS-1$
+            Toast.makeText(getApplicationContext(),"Resultsssss",Toast.LENGTH_LONG).show();
 
         }
 
@@ -227,6 +229,7 @@ public class BackgroundListner extends Service {
     @Override
     public IBinder onBind(Intent arg0) {
         // TODO Auto-generated method stub
-        return null;
+        return mServerMessenger.getBinder();
+
     }
 }
